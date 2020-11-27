@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using iCartApi.Models;
+using iCartApi.Models.DB;
 
 namespace iCartApi.Controllers
 {
@@ -13,9 +14,9 @@ namespace iCartApi.Controllers
     [ApiController]
     public class GoodsController : ControllerBase
     {
-        private readonly GoodsContext db;
+        private readonly myDBContainer db;
 
-        public GoodsController(GoodsContext context)
+        public GoodsController(myDBContainer context)
         {
             db = context;
         }
@@ -23,23 +24,54 @@ namespace iCartApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<view_GoodsUnit>>> GetGoods()
         {
-            return await db.view_GoodsUnit.ToListAsync();
-            //.Where(x => x.IsDelete == false).OrderBy(x => x.CreatedDate)
-            //return CreatedAtAction("GetGoods", new { id = '1' }, ListData);
+            return await db.view_GoodsUnit
+            .Where(x => x.IsBaseUnit == true && x.IsDelete == false && x.IsInactive == false)
+            .OrderBy(x => x.CreatedDate)
+            .ToListAsync();
         }
 
         // GET: api/Goods/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Goods>> GetGoods(string id)
+        public async Task<ActionResult<GoodsModel>> GetGoods(string id)
         {
-            var goods = await db.Goods.FirstOrDefaultAsync(x => x.IsDelete == false && x.GoodsID == id);
-
-            if (goods == null)
+            var objGoods = new GoodsModel();
+            if (!string.IsNullOrEmpty(id))
             {
-                return NotFound();
+                var goods = await db.Goods.FirstOrDefaultAsync(x => x.IsDelete == false && x.GoodsID == id);
+                if (goods != null)
+                {
+                    objGoods.goodsID = goods.GoodsID;
+                    objGoods.goodsNo = goods.GoodsNo;
+                    objGoods.goodsCode = goods.GoodsCode;
+                    objGoods.goodsName = goods.GoodsName;
+                    objGoods.goodsNameEng = goods.GoodsNameEng;
+
+                    #region Set LisUnit
+                    var unit = db.view_GoodsUnit.Where(x => x.GoodsID == id).OrderBy(x => x.CreatedDate).ToList();
+                    if (unit != null && unit.Count > 0)
+                    {   var ListUnit = new List<UnitModel>();
+                        foreach (var un in unit)
+                        {
+                            ListUnit.Add(new UnitModel(){
+                                uid = Guid.NewGuid().ToString(),
+                                barcode = un.Barcode,
+                                unitNo = un.UnitNo,
+                                unitName = un.UnitName,
+                                isBaseUnit = un.IsBaseUnit
+                            });
+                        }
+
+                        objGoods.listUnit = ListUnit;
+                    }
+                    #endregion
+                }
+                else 
+                {
+                    return NotFound();
+                }
             }
 
-            return goods;
+            return objGoods;
         }
 
         // PUT: api/Goods/5
@@ -81,7 +113,7 @@ namespace iCartApi.Controllers
         public async Task<ActionResult<Goods>> PostGoods(Goods goods)
         {
             db.Goods.Add(goods);
-            await db.SaveChangesAsync();
+            //await db.SaveChangesAsync();
 
             return CreatedAtAction("GetGoods", new { id = goods.GoodsID }, goods);
         }

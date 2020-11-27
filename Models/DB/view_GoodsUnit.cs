@@ -1,6 +1,6 @@
 using System;
 
-namespace iCartApi.Models
+namespace iCartApi.Models.DB
 {
     public class view_GoodsUnit
     {
@@ -20,5 +20,10 @@ namespace iCartApi.Models
         public decimal GoodsCost { get; set; }
         public decimal GoodsSalePrice { get; set; }
         public decimal GoodsPurchasePrice { get; set; }
+        public string CreatedByID { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public bool IsDelete { get; set; }
+        public bool IsInactive { get; set; }
+
     }
 }

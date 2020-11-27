@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using iCartApi.Models;
+using iCartApi.Models.DB;
 
 namespace iCartApi
 {
@@ -20,8 +20,8 @@ namespace iCartApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GoodsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("GoodsContext")));
+            services.AddDbContext<myDBContainer>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("myDBContainer")));
             services.AddControllers();
             services.AddCors(options => options.AddDefaultPolicy(
                 builder => builder.AllowAnyOrigin()
