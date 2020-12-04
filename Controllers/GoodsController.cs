@@ -138,5 +138,18 @@ namespace iCartApi.Controllers
         {
             return db.Goods.Any(e => e.GoodsID == id);
         }
+
+        // GET: api/Goods/5
+        [HttpGet("GetGoodsByBarcode/{Barcode}")]
+        public async Task<ActionResult<view_GoodsUnit>> GetGoodsByBarcode(string Barcode)
+        {
+            var objGoods = new view_GoodsUnit();
+            if (!string.IsNullOrEmpty(Barcode))
+            {
+                objGoods = await db.view_GoodsUnit.FirstOrDefaultAsync(x => x.IsDelete == false && x.Barcode == Barcode);
+            }
+
+            return objGoods;
+        }
     }
 }
