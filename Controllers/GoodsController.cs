@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using iCartApi.Models;
-using iCartApi.Models.DB;
+using ServiceBase;
 
 namespace iCartApi.Controllers
 {
@@ -20,6 +20,45 @@ namespace iCartApi.Controllers
         {
             db = context;
         }
+
+        #region PrepareData
+
+        #region GetRunningNumber
+        [HttpGet("GetRunningNumber")]
+        public async Task<ActionResult<string>>  GetRunningNumber()
+        {
+            var defaultNumber  = 1;
+            var runningNumber = "";
+            var runningStart = "";
+            var dateNow = Convert.ToDateTime(SystemDateTime.Now).ToString("yyyy/MM/dd");
+            if (dateNow != null)
+            {
+                if (defaultNumber <= 9)
+                {
+                    runningStart = "0" + ConvertHelper.ToString(defaultNumber);
+                }
+
+                dateNow = dateNow.Replace("/", "");
+                var format = "GN" + dateNow + "-";
+                runningNumber = format + runningStart;
+            }
+
+            return runningNumber;
+        }
+        #endregion
+        
+        #region GetListUnit
+        [HttpGet("GetListUnit")]
+        public async Task<ActionResult<IEnumerable<Unit>>> GetListUnit()
+        {
+            return await db.Unit
+            .Where(x => x.IsDelete == false && x.IsInactive == false)
+            .OrderBy(x => x.CreatedDate)
+            .ToListAsync();
+        }
+        #endregion
+
+        #endregion
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<view_GoodsUnit>>> GetGoods()
@@ -112,10 +151,10 @@ namespace iCartApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Goods>> PostGoods(Goods goods)
         {
-            db.Goods.Add(goods);
+            //db.Goods.Add(goods);
             //await db.SaveChangesAsync();
-
-            return CreatedAtAction("GetGoods", new { id = goods.GoodsID }, goods);
+            return goods;
+            // return CreatedAtAction("GetGoods", new { id = goods.GoodsID }, goods);
         }
 
         // DELETE: api/Goods/5

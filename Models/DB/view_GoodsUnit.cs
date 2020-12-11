@@ -1,6 +1,6 @@
 using System;
 
-namespace iCartApi.Models.DB
+namespace iCartApi.Models
 {
     public class view_GoodsUnit
     {
