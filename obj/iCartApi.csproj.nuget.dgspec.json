@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Project\\iCartApi\\iCartApi.csproj": {}
+    "C:\\Project\\iCartApiz\\iCartApi.csproj": {}
   },
   "projects": {
-    "C:\\Project\\iCartApi\\iCartApi.csproj": {
+    "C:\\Project\\iCartApiz\\iCartApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Project\\iCartApi\\iCartApi.csproj",
+        "projectUniqueName": "C:\\Project\\iCartApiz\\iCartApi.csproj",
         "projectName": "iCartApi",
-        "projectPath": "C:\\Project\\iCartApi\\iCartApi.csproj",
+        "projectPath": "C:\\Project\\iCartApiz\\iCartApi.csproj",
         "packagesPath": "C:\\Users\\CRM\\.nuget\\packages\\",
-        "outputPath": "C:\\Project\\iCartApi\\obj\\",
+        "outputPath": "C:\\Project\\iCartApiz\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CRM\\AppData\\Roaming\\NuGet\\NuGet.Config",

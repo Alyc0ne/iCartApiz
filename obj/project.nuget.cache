@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "krVwWfEHsLO+7SUhLiKBv9ZC2FmN+mBlBla9Z7bwKrCxb/9/cnBsYjT+WsRcusA8cYQGs/79FICUZQHHzw5R+w==",
+  "dgSpecHash": "Q7pt+4cAJv28hjgHdeIz8eqh1u5f7E5T1S66p8nhV47qI2YIaokMOXrz4WAMZGJbv2fa3hK0ORQEDx0jKNK5LA==",
   "success": true,
-  "projectFilePath": "C:\\Project\\iCartApi\\iCartApi.csproj",
+  "projectFilePath": "C:\\Project\\iCartApiz\\iCartApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CRM\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\CRM\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
