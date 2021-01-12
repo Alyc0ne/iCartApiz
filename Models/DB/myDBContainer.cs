@@ -11,15 +11,15 @@ namespace iCartApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<view_GoodsUnit>().HasNoKey();
+            modelBuilder.Entity<view_ProductsUnit>().HasNoKey();
             
         }
 
-        public DbSet<Goods> Goods { get; set; }
-        public DbSet<GoodsUnit> GoodsUnit { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<ProductsUnit> ProductsUnit { get; set; }
         public DbSet<Unit> Unit { get; set; }
 
         //View
-        public DbSet<view_GoodsUnit> view_GoodsUnit { get; set; }
+        public DbSet<view_ProductsUnit> view_ProductsUnit { get; set; }
     }
 }

@@ -2,13 +2,13 @@ using System.Collections.Generic;
 
 namespace iCartApi.Models
 {
-    public class GoodsModel
+    public class ProductsModel
     {
-        public string goodsID { get; set; }
-        public string goodsNo { get; set; }
-        public string goodsCode { get; set; }
-        public string goodsName { get; set; }
-        public string goodsNameEng { get; set; }
+        public string productID { get; set; }
+        public string productNo { get; set; }
+        public string productCode { get; set; }
+        public string productName { get; set; }
+        public string productNameEng { get; set; }
         public List<UnitModel> listUnit { get; set; }
     }
 

@@ -2,28 +2,28 @@ using System;
 
 namespace iCartApi.Models
 {
-    public class view_GoodsUnit
+    public class view_ProductsUnit
     {
-        public string GoodsUnitID { get; set; }
-        public string CompanyID { get; set; }
-        public string GoodsID { get; set; }
-        public string GoodsCode { get; set; }
-        public string Barcode { get; set; }
-        public string GoodsNo { get; set; }
-        public string GoodsName { get; set; }
-        public string GoodsNameEng { get; set; }
-        public string UnitID { get; set; }
-        public string UnitNo { get; set; }
-        public string UnitName { get; set; }
-        public string UnitNameEng { get; set; }
-        public bool IsBaseUnit { get; set; }
-        public decimal GoodsCost { get; set; }
-        public decimal GoodsSalePrice { get; set; }
-        public decimal GoodsPurchasePrice { get; set; }
-        public string CreatedByID { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public bool IsDelete { get; set; }
-        public bool IsInactive { get; set; }
+        public string productUnitID { get; set; }
+        public string companyID { get; set; }
+        public string productID { get; set; }
+        public string productCode { get; set; }
+        public string barcode { get; set; }
+        public string productNo { get; set; }
+        public string productName { get; set; }
+        public string productNameEng { get; set; }
+        public string unitID { get; set; }
+        public string unitNo { get; set; }
+        public string unitName { get; set; }
+        public string unitNameEng { get; set; }
+        public bool isBaseUnit { get; set; }
+        public decimal productCost { get; set; }
+        public decimal productSalePrice { get; set; }
+        public decimal productPurchasePrice { get; set; }
+        public string createdByID { get; set; }
+        public DateTime createdDate { get; set; }
+        public bool isDelete { get; set; }
+        public bool isInactive { get; set; }
 
     }
 }
